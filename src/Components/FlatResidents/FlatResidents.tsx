@@ -1,4 +1,4 @@
-import {useLocation, useSearchParams} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import styles from "./FlatResidents.module.css"
 import {FlatType} from "api/types";
 import ResidentCard from "Components/ResidentCard/ResidentCard";
@@ -9,6 +9,7 @@ import {schema} from "utils/resolvers/resolver";
 
 const FlatResidents = () => {
     const location = useLocation();
+    const navigate=useNavigate()
     const [searchParams] = useSearchParams()
     const addressId = searchParams.get('addressId') as string
     const flat: FlatType = location.state
@@ -41,21 +42,24 @@ const FlatResidents = () => {
             <div className={styles.flatInfo}>
                 {`Детальная информация по адресу: ${flat.streetName} ${flat.houseId}, квартира № ${flat.flat}`}
             </div>
-            <form className={styles.form} onSubmit={handleSubmit(handleAddResident)}>
-                <div>Форма добавления нового жильца</div>
-                <input {...register("name")} type="text" placeholder="Имя жильца" />
-                <p className={styles.error}>{errors.name?.message}</p>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
+                <form className={styles.form} onSubmit={handleSubmit(handleAddResident)}>
+                    <div>Форма добавления нового жильца</div>
+                    <input {...register("name")} type="text" placeholder="Имя жильца"/>
+                    <p className={styles.error}>{errors.name?.message}</p>
 
-                <input {...register("phone")} type="tel" placeholder="Телефон жильца" />
-                <p className={styles.error}>{errors.phone?.message}</p>
+                    <input {...register("phone")} type="tel" placeholder="Телефон жильца"/>
+                    <p className={styles.error}>{errors.phone?.message}</p>
 
-                <input {...register("email")} type="email" placeholder="Email жильца" />
-                <p className={styles.error}>{errors.email?.message}</p>
+                    <input {...register("email")} type="email" placeholder="Email жильца"/>
+                    <p className={styles.error}>{errors.email?.message}</p>
 
-                <button type="submit" disabled={isAdding}>
-                    {isAdding ? 'Добавление...' : 'Добавить жильца'}
-                </button>
-            </form>
+                    <button type="submit" disabled={isAdding}>
+                        {isAdding ? 'Добавление...' : 'Добавить жильца'}
+                    </button>
+                </form>
+                <button className={styles.backBtn} onClick={()=>navigate('/')}>Вернуться назад</button>
+            </div>
 
             {clients && clients.length > 0 ? (
                 <div className={styles.cards}>
