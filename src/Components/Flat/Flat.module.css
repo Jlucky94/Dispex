@@ -1,0 +1,15 @@
+.container {
+    padding: 5px;
+    background: #ddd;
+    margin: 5px 0 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.container:hover {
+    background-color: #d0d0d0; /* Легкий фон при наведении */
+}
+.info {
+    font-size: 0.8em;
+    color: #555;
+}

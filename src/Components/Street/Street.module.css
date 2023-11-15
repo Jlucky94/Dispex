@@ -1,0 +1,18 @@
+.container {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 1.2em;
+    color: #333;
+    margin: 0 0 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.title:hover {
+    background-color: #f0f0f0; /* Легкий фон при наведении */
+}
